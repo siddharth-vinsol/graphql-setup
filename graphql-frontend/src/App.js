@@ -1,25 +1,18 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import axios from 'axios';
 import './App.css';
+import { createGraphiQLFetcher } from '@graphiql/toolkit';
+import { GraphiQL } from 'graphiql';
+import 'graphiql/graphiql.css';
 
 function App() {
+  const fetcher = createGraphiQLFetcher({
+    url: 'http://127.0.0.1:3000/graphql',
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <GraphiQL fetcher={fetcher} />
+  )
 }
 
 export default App;
